@@ -1,27 +1,34 @@
 package com.ly.entity;
 
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Table(name="t_user")
 @Entity
 public class UserEntity {
 
     @Id
-    private Integer userId;
+    private String userId;
     private String userName;
     @Column(name="user_psd")
     private String userPassword;
+    @Column(columnDefinition = "tinyint")
+    private Integer active;
 
-    public Integer getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    public Integer getActive() {
+        return active;
+    }
+
+    public void setActive(Integer active) {
+        this.active = active;
     }
 
     public String getUserName() {

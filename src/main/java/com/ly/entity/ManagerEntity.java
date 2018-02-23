@@ -1,6 +1,8 @@
 package com.ly.entity;
 
+import javax.annotation.Generated;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -9,6 +11,7 @@ import javax.persistence.Table;
 public class ManagerEntity {
 
     @Id
+    @GeneratedValue
     private Integer id;
     private String name;
     private String password;

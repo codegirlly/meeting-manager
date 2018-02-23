@@ -1,9 +1,6 @@
 package com.ly.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 
 @Table(name="t_meeting")
@@ -11,12 +8,19 @@ import java.util.Date;
 public class MeetingEntity {
 
     @Id
+    @GeneratedValue
     private Integer id;
+    /**
+     * 会议名称
+     */
     private String name;
     private Integer peopleNum;
     private Date beginTime;
     private Date endTime;
     private Integer roomId;
+    /**
+     * 会议状态 0 未开始 1 正在进行 2 已结束
+     */
     @Column(columnDefinition = "tinyint")
     private Integer status;
     private Integer managerId;

@@ -34,7 +34,7 @@ public class UserTest {
     @Test
     public void drink(){
         UserEntity ue = new UserEntity();
-        ue.setUserId(2012);
+        ue.setUserId("2012");
         ue.setUserName("fzj");
         ue.setUserPassword("1994");
         userRepository.save(ue);

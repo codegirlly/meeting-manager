@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <meta charset="UTF-8"></meta>
+    <title>Title</title>
+</head>
+<body>
+<!--<form action="/register/manager" method="get">-->
+    <p id="tip"></p>
+    <p>请输入用户名：<input id="username" name="userName"/></p>
+    <p>请输入登录密码：<input id="password" name="userPassword" type="password"/></p>
+    <button onclick="register()">提交</button>
+    <!--<input type="submit" value="提交"/>-->
+<!--</form>-->
+</body>
+<script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+<script th:inline="javascript">
+    function register() {
+        var username = $("#username").val();
+        var password = $("#password").val();
+
+        $.ajax({
+            url:"/register/manager",
+            data:{"userName":username,"userPassword":password},
+            success: function(result){
+                if(result === "success"){
+                    alert("注册成功");
+                }
+                if(result === "fail"){
+                    $("#tip").text("提示：该用户名已被注册");
+                }
+                console.log("获取到的响应结果:"+result);
+            }
+        })
+
+    }
+</script>
+
+</html>
