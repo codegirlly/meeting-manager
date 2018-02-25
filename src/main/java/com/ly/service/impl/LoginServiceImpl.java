@@ -13,18 +13,26 @@ public class LoginServiceImpl implements LoginService{
     private UserRepository userRepository;
 
     @Override
-    public boolean judge(String username, String password) {
+    public int judge(String username, String password) {
         UserEntity userEntity = userRepository.findByUserName(username);
 
-        boolean status = false;
+        int status = 0;
         if(userEntity == null){
             return status;
         }
+
         String pwd = userEntity.getUserPassword();
-        if (pwd.equals(password)) {
-            status = true;
+        if (!pwd.equals(password)) {
+            return status;
+        }
+
+        Integer active = userEntity.getActive();
+        if(active==0){
+            status=2;
+        }else{
+            status = 1;
         }
         return status;
-
     }
+
 }

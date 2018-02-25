@@ -23,15 +23,11 @@ public class LoginController {
 
     @RequestMapping("/judge")
     @ResponseBody
-    public String judgeLogin(String username,String password){
+    public int judgeLogin(String username,String password) {
 
-        boolean status = loginService.judge(username,password);
+        int status = loginService.judge(username, password);
 
-        if(status){
-            return "success";
-        }
-
-        return "fail";
+        return status;
 
     }
 

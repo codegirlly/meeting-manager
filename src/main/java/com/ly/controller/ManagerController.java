@@ -20,6 +20,10 @@ public class ManagerController {
     String register(){
         return "/manager";
     }
+    @RequestMapping("/index")
+    String index(){
+        return "/index";
+    }
 
     @RequestMapping("/register/manager")
     @ResponseBody
