@@ -25,6 +25,23 @@ public class ManagerController {
         return "/index";
     }
 
+    @RequestMapping("/managerlogin")
+    String login(){
+        return "/managelogin";
+    }
+
+    @RequestMapping("/add")
+    @ResponseBody
+    String judgeManage(String username,String password){
+       boolean status = managerService.managerLogin(username, password);
+       String tag ;
+       if(status){
+           tag = "success";
+       }else{
+           tag="fail";
+       }
+        return tag;
+    }
     @RequestMapping("/register/manager")
     @ResponseBody
     String judgeRegister(@Valid UserVo userVo, BindingResult bindingResult){

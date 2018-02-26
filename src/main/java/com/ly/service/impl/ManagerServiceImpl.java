@@ -1,6 +1,8 @@
 package com.ly.service.impl;
 
+import com.ly.entity.ManagerEntity;
 import com.ly.entity.UserEntity;
+import com.ly.repository.ManagerRepository;
 import com.ly.repository.UserRepository;
 import com.ly.service.ManagerService;
 import com.ly.vo.UserVo;
@@ -15,6 +17,9 @@ public class ManagerServiceImpl implements ManagerService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private ManagerRepository managerRepository;
 
     @Override
     public boolean register(UserVo userVo) {
@@ -31,5 +36,17 @@ public class ManagerServiceImpl implements ManagerService {
             return status;
         }
        return status;
+    }
+
+    @Override
+    public boolean managerLogin(String username, String password) {
+        boolean status = false;
+        ManagerEntity managerEntity = managerRepository.findByName(username);
+        if (managerEntity == null) {
+            return status;
+        }
+        if(managerEntity.getPassword().equals(password)) {
+            status = true;
+        } return status;
     }
 }

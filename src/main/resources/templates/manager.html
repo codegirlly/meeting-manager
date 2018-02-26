@@ -24,7 +24,7 @@
             data:{"userName":username,"userPassword":password},
             success: function(result){
                 if(result === "success"){
-                    alert("注册成功");
+                    window.location.href='/index';
                 }
                 if(result === "fail"){
                     $("#tip").text("提示：该用户名已被注册");
@@ -33,7 +33,7 @@
             }
         })
     }
-    document.write("<h1>liuying小笨猪.</h1>")
+
 
 </script>
 

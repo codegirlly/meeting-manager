@@ -1,8 +1,12 @@
 package com.ly.service.impl;
 
+import com.ly.controller.LoginController;
 import com.ly.entity.UserEntity;
 import com.ly.repository.UserRepository;
 import com.ly.service.LoginService;
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,11 +16,20 @@ public class LoginServiceImpl implements LoginService{
     @Autowired
     private UserRepository userRepository;
 
+    private static Logger LOGGER = LoggerFactory.getLogger(LoginServiceImpl.class);
+
     @Override
     public int judge(String username, String password) {
-        UserEntity userEntity = userRepository.findByUserName(username);
 
         int status = 0;
+        if(StringUtils.isBlank(username) || StringUtils.isBlank(password)){
+            LOGGER.info("账号密码为空");
+            return status;
+
+        }
+        UserEntity userEntity = userRepository.findByUserName(username);
+
+
         if(userEntity == null){
             return status;
         }

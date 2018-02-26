@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"><head>
+    <meta charset="UTF-8"></meta>
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" th:href="@{css/bootstrap.min.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{css/signin.css}" />
+    <link rel="icon" th:href="@{images/favicon.ico}"/>
+</head>>
+<body class="text-center">
+
+<form class="form-signin">
+    <img class="mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72"/>
+    <h1 class="h3 mb-3 font-weight-normal">请登录</h1>
+    <h5 id = "tips"></h5>
+    <label for="username" class="sr-only">用户名</label>
+    <input type="name" id="username" class="form-control" placeholder="用户名"/>
+    <label for="password" class="sr-only">密码</label>
+    <input type="password" id="password" class="form-control" placeholder="密码" />
+    <div class="checkbox mb-3">
+        <label>
+            <input type="checkbox" value="remember-me"/> 记住密码
+        </label>
+    </div>
+    <button class="btn btn-lg btn-primary btn-block" type="button" onclick="managerlogin()">Sign in</button>
+    <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
+</form>
+</body>
+<script type="text/javascript" th:src="@{js/jquery-3.3.1.min.js}"></script>
+<script>
+    function managerlogin() {
+        var username = $("#username").val();
+        var password = $("#password").val();
+        $.ajax({
+            url:"/add",
+            data:{"username":username,"password":password},
+            success:function (result) {
+                if(result==="success"){
+                    window.location.href='/index';
+                }else if(result==="fail"){
+                    $("#tips").text("账号密码错误")
+                } else{
+                        alert("未知");
+                    }
+                }
+
+        })
+    }
+</script>
+</html>
