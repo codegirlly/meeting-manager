@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class MeetingServiceImpl implements MeetingService {
 
@@ -25,5 +27,12 @@ public class MeetingServiceImpl implements MeetingService {
         meetingEntity.setmanagerId(1);
         meetingRepository.save(meetingEntity);
     }
+
+    @Override
+    public List<MeetingEntity> findAll() {
+      return  meetingRepository.findAll();
+
+    }
+
 
 }

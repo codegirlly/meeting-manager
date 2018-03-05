@@ -10,6 +10,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 @Controller
 public class LoginController {
 
@@ -27,9 +31,16 @@ public class LoginController {
 
     @RequestMapping("/judge")
     @ResponseBody
-    public int judgeLogin(String username,String password) {
+    public int judgeLogin(String username, String password, HttpServletResponse response) {
 
         int status = loginService.judge(username, password);
+
+        if(status == 1){
+            //将key-value插入到cookie
+            Cookie cookie = new Cookie("login","success");
+            response.addCookie(cookie);
+        }
+
 
         return status;
 

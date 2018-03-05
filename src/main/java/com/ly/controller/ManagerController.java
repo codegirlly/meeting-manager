@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.validation.Valid;
 
 @Controller
+@RequestMapping("/manager")
 public class ManagerController {
 
     @Autowired

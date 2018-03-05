@@ -21,7 +21,7 @@ public class LoginServiceImpl implements LoginService{
     @Override
     public int judge(String username, String password) {
 
-        int status = 0;
+        int status = 0;//登录失败
         if(StringUtils.isBlank(username) || StringUtils.isBlank(password)){
             LOGGER.info("账号密码为空");
             return status;
@@ -41,9 +41,9 @@ public class LoginServiceImpl implements LoginService{
 
         Integer active = userEntity.getActive();
         if(active==0){
-            status=2;
+            status=2;//未激活
         }else{
-            status = 1;
+            status = 1;//成功
         }
         return status;
     }
